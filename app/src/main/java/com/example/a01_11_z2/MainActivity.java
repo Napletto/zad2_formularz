@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.RadioButton;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -81,9 +83,17 @@ public class MainActivity extends AppCompatActivity {
         });
         btnOrder.setOnClickListener(v -> {
             if (validateForm()) {
-                submitOrder();
+                askForConfirmation();
             }
         });
+    }
+    private void askForConfirmation() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_title)
+                .setMessage(R.string.confirm_message)
+                .setPositiveButton(R.string.yes, (dialog, which) -> submitOrder())
+                .setNegativeButton(R.string.no, null)
+                .show();
     }
 
     private boolean validateForm() {
@@ -122,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void submitOrder() {
         tvSummary.setText(buildSummary());
+
+        Snackbar.make(findViewById(R.id.main), R.string.ordered, Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, v -> tvSummary.setText(""))
+                .show();
     }
 
     private String buildSummary() {

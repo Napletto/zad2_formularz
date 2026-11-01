@@ -41,4 +41,12 @@
     <string name="pickup">Odbiór osobisty</string>
     <string name="delivery_to">Dostawa: %1$s</string>
     <string name="summary_format">%1$s\nPizza: %2$s, %3$s\nDodatki: %4$s\nIlość: %5$d\n%6$s</string>
+
+    <string name="confirm_title">Złożyć zamówienie?</string>
+    <string name="confirm_message">Sprawdź pizzę, rozmiar i ilość przed wysłaniem zamówienia.</string>
+    <string name="yes">Tak, zamów</string>
+    <string name="no">Popraw</string>
+
+    <string name="ordered">Zamówienie złożone</string>
+    <string name="undo">Cofnij</string>
 </resources>
