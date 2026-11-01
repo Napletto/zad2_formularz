@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -77,5 +79,83 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) { }
         });
+        btnOrder.setOnClickListener(v -> {
+            if (validateForm()) {
+                submitOrder();
+            }
+        });
     }
+
+    private boolean validateForm() {
+        String name = etName.getText().toString().trim();
+        if (name.isEmpty()) {
+            etName.setError(getString(R.string.error_name));
+            etName.requestFocus();
+            return false;
+        }
+
+        if (spPizza.getSelectedItemPosition() == 0) {       // pozycja 0 = brak wyboru
+            Toast.makeText(this, R.string.error_pizza, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (rgSize.getCheckedRadioButtonId() == -1) {       // -1 = nic nie zaznaczono
+            Toast.makeText(this, R.string.error_size, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (sbQuantity.getProgress() == 0) {
+            Toast.makeText(this, R.string.error_quantity, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // adres sprawdzamy tylko, gdy włączona jest dostawa
+        if (swDelivery.isChecked()
+                && etAddress.getText().toString().trim().isEmpty()) {
+            etAddress.setError(getString(R.string.error_address));
+            etAddress.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void submitOrder() {
+        tvSummary.setText(buildSummary());
+    }
+
+    private String buildSummary() {
+        RadioButton checkedSize = findViewById(rgSize.getCheckedRadioButtonId());
+
+        String delivery = swDelivery.isChecked()
+                ? getString(R.string.delivery_to, etAddress.getText().toString().trim())
+                : getString(R.string.pickup);
+
+        return getString(R.string.summary_format,
+                etName.getText().toString().trim(),
+                spPizza.getSelectedItem().toString(),
+                checkedSize.getText().toString(),
+                getToppings(),
+                sbQuantity.getProgress(),
+                delivery);
+    }
+
+    private String getToppings() {
+        StringBuilder sb = new StringBuilder();
+        if (cbCheese.isChecked()) {
+            sb.append(cbCheese.getText()).append(", ");
+        }
+        if (cbMushrooms.isChecked()) {
+            sb.append(cbMushrooms.getText()).append(", ");
+        }
+        if (cbOlives.isChecked()) {
+            sb.append(cbOlives.getText()).append(", ");
+        }
+
+        if (sb.length() == 0) {
+            return getString(R.string.none);
+        }
+        return sb.substring(0, sb.length() - 2);    // obcinamy ostatni ", "
+    }
+
 }

@@ -30,4 +30,15 @@
         <item>Hawajska</item>
         <item>Capricciosa</item>
     </string-array>
+
+    <string name="error_name">Podaj imię</string>
+    <string name="error_address">Podaj adres dostawy</string>
+    <string name="error_pizza">Wybierz pizzę z listy</string>
+    <string name="error_size">Zaznacz rozmiar pizzy</string>
+    <string name="error_quantity">Ilość musi być większa od zera</string>
+
+    <string name="none">brak</string>
+    <string name="pickup">Odbiór osobisty</string>
+    <string name="delivery_to">Dostawa: %1$s</string>
+    <string name="summary_format">%1$s\nPizza: %2$s, %3$s\nDodatki: %4$s\nIlość: %5$d\n%6$s</string>
 </resources>
