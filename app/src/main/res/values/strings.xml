@@ -1,3 +1,33 @@
 <resources>
-    <string name="app_name">01_11_z2</string>
+    <string name="app_name">Pizzeria</string>
+
+    <string name="header">Zamów pizzę</string>
+    <string name="label_name">Imię</string>
+    <string name="label_pizza">Pizza</string>
+    <string name="label_size">Rozmiar</string>
+    <string name="label_toppings">Dodatki</string>
+    <string name="label_quantity">Ilość</string>
+    <string name="label_address">Adres dostawy</string>
+
+    <string name="hint_name">Jan</string>
+    <string name="hint_address">ul. Przykładowa 1, Jelenia Góra</string>
+
+    <string name="size_small">Mała (25 cm)</string>
+    <string name="size_medium">Średnia (32 cm)</string>
+    <string name="size_large">Duża (42 cm)</string>
+
+    <string name="topping_cheese">Podwójny ser</string>
+    <string name="topping_mushrooms">Pieczarki</string>
+    <string name="topping_olives">Oliwki</string>
+
+    <string name="delivery">Dostawa do domu</string>
+    <string name="btn_order">ZAMÓW</string>
+
+    <string-array name="pizzas">
+        <item>-- wybierz pizzę --</item>
+        <item>Margherita</item>
+        <item>Pepperoni</item>
+        <item>Hawajska</item>
+        <item>Capricciosa</item>
+    </string-array>
 </resources>
